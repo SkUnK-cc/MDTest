@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MDTest</string>
+    <string name="my_appbar_behavior">com.example.hp.mdtest.MyAppBarBehavior</string>
+    <string name="my_appbar_alpha_behavior">com.example.hp.mdtest.MyAppBarAlphaBehavior</string>
+</resources>

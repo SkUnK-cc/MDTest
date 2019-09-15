@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--CoordinatorLayout的高度最好设置为 match_parent，否则无法将 NestedScrollView包含进来，
+即时NestedScrollView有高度，也无法显示，因为CoordinatorLayout的高度只容纳了AppLayout
+NestedScrollView 也需要设置为 match_parent，否则事件无法被 CoordinatorLayout接受消费-->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <!-- android:fitsSystemWindow = "true" 表示整个布局展示是整个屏幕出去状态栏,标题栏和导航栏剩下的区域-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/layout_appbar"
+        android:layout_width="match_parent"
+        android:layout_height = "wrap_content">
+        <!--
+         app:expandedTitleMarginStart="10dp"
+        设置扩张时候(还没有收缩时)title离屏幕左边的距离
+
+         app:contentScrim="?attr/colorPrimary"
+        设置当完全CollapsingToolbarLayout折叠(收缩)后的背景颜色
+        -->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctb"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="50dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!--将 ImageView的 layout_collapseMode 指定为 parallax 使其随着整体慢速滚动-->
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:src = "@drawable/ic_launcher_foreground" />
+            <!--
+            Toolbar 的title会显示在CollapsingToolbarLayout的左下方
+            将 Toolbar 的 layout_collapseMode 指定为 pin 使其一直存在
+            存在疑问：CollapsingToolbarLayout 指定了 scrollFlags为 exitUntilCollapsed后，Toolbar不指定 pin也能固定在屏幕上
+            但是 CollapsingToolbarLayout 不指定 exitUntilCollapsed，Toolbar指定了 pin 的情况下，Toolbar无法固定-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_collapseMode="pin"
+                app:title="Toolbar"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <!--选项卡-->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@android:color/black"/>
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!--NestedScrollView 的子View 高度设置为 wrap_contnet ，则不会出现上滑后的空白！！！！-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="heihei"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShopInfoActivity">
+    <!--AppBarLayout有默认的 behavior ，是其内部类，继承自HeaderBehavior-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/my_appbar_alpha_behavior">
+
+        <!--layout_scrollFlags 的 exitUntilCollapsed 值代表最小高度为 Toolbar的高度
+        可以通过改变toolbar的高度改变这个收缩时的最小高度-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                app:layout_collapseMode="pin"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="120dp"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="俏九州西菜"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+            <!--Toolbar 的title会显示在CollapsingToolbarLayout的左下方-->
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+
+                android:tag="toolbar"
+                app:layout_collapseMode="pin">
+            </android.support.v7.widget.Toolbar>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/colorPrimaryDark"
+                android:alpha="0"
+                android:tag="floating_alpha_layout"
+                app:layout_collapseMode="pin"
+                android:layout_marginTop="@dimen/toolbarHeight">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="悬浮窗口"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <!--使用 DisinterceptNestedScrollView 主要是为了
+        当你滑动的不是列表，而是其他部分的时候(比如AppBarLayout中的NestedScroll或者其他容器),
+        则事件会被CoordinatorLayout(NestedScrollingParent2)拦截，
+        因为 CoordinatorLayout 的onInterceptTouchEvent 会判断是否有 behavior.onInterceptTouchEvent返回true
+        有就拦截事件，默认 AppBarLayout.HeaderBehavior 会返回true，
+        然后， CoordinatorLayout再把事件交给 该 behavior 的 onTouchEvent 方法，
+        这个方法中会进行控件变换，所以事件无法送到 我们重写 behavior的 onNestedPreScroll 方法中-->
+        <!--NestedScrollView的高度指定为 wrap_content或者match_parent都可以，
+        然后子ViewGroup也指定为wrap_content，view指定为固定高度
+        就可以得到有效的视图，且不会出现空白-->
+        <com.example.hp.mdtest.DisInterceptNestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="tablayout"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="标签"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="标签"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="标签"/>
+            </LinearLayout>
+        </com.example.hp.mdtest.DisInterceptNestedScrollView>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="nestedscrollview"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="列表"
+                android:gravity="center_vertical"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
